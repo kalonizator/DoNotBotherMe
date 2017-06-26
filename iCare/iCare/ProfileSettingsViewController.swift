@@ -20,39 +20,39 @@ class ProfileSettingsViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         if revealViewController() != nil {
-            //            revealViewController().rearViewRevealWidth = 62
-            
+
             menuButton.target = revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             
             revealViewController().rightViewRevealWidth = 150
             
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-            
-            
         }
         
-        ////////Set Gradient Background////////
-        func createGradientLayer() {
-            gradientLayer = CAGradientLayer()
-            
-            gradientLayer.frame = self.view.bounds
-            
-            gradientLayer.colors = [UIColor(red:0.35, green:0.59, blue:0.75, alpha:0.2).cgColor,UIColor(red:0.38, green:0.12, blue:0.64, alpha:0.2).cgColor]
-            
-            self.view.layer.addSublayer(gradientLayer)
-        }
-        ////////Set Gradient Background////////
-        
-        func viewWillAppear(animated: Bool) {
-            super.viewWillAppear(animated)
-            createGradientLayer()
-        }
-        
-        viewWillAppear(animated: true)
-        
+        print(self.revealViewController().frontViewController)
+        print(self.revealViewController().rearViewController)
     }
+    
+    ////////Set Gradient Background////////
+    func createGradientLayer() {
+        gradientLayer = CAGradientLayer()
+        
+        gradientLayer.frame = self.view.bounds
+        
+        gradientLayer.colors = [UIColor(red:0.35, green:0.59, blue:0.75, alpha:0.2).cgColor,UIColor(red:0.38, green:0.12, blue:0.64, alpha:0.2).cgColor]
+        
+        self.view.layer.addSublayer(gradientLayer)
+    }
+    ////////Set Gradient Background////////
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        createGradientLayer()
 
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
