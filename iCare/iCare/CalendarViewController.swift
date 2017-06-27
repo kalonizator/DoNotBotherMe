@@ -8,35 +8,20 @@
 
 import UIKit
 
-class CalendarViewController: UIViewController, UITableViewDelegate, ExpandableCalendarDelegate, UITableViewDataSource{
+class CalendarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var calendarTableView: UITableView!
-    
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     var gradientLayer: CAGradientLayer!
+    var datasource = [CalendarTableViewCellContent]()
+    var expanded = 0
+    var expandedIndex = 0
+    var prevSelectedPath: IndexPath?
     
-    var sections = [
-        
-        Section(month: "December",
-                dayOfTheWeek: "Monday",
-                numberOfRequests: "8",
-                requestsText: ["No requests"],
-                expanded: true),
-        Section(month: "December",
-        dayOfTheWeek: "Monday",
-        numberOfRequests: "8",
-        requestsText: ["No requests"],
-        expanded: true),
-        Section(month: "December",
-        dayOfTheWeek: "Monday",
-        numberOfRequests: "8",
-        requestsText: ["No requests"],
-        expanded: true)
-    ]
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         if revealViewController() != nil {
             
             menuButton.target = revealViewController()
@@ -45,10 +30,25 @@ class CalendarViewController: UIViewController, UITableViewDelegate, ExpandableC
             revealViewController().rightViewRevealWidth = 150
             
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            
+            
         }
-        
         print(self.revealViewController().frontViewController)
         print(self.revealViewController().rearViewController)
+        
+
+        
+        calendarTableView.dataSource = self
+        calendarTableView.delegate = self
+        calendarTableView.tableFooterView = UIView()
+        
+        datasource = [CalendarTableViewCellContent(month: "December",
+                                                   dayOfTheWeek: "December", numberOfRequests: "3", requestsText: "18 отзывов"),
+                      CalendarTableViewCellContent(month: "December",
+                                                   dayOfTheWeek: "December", numberOfRequests: "3", requestsText: "18 отзывов"),
+                      CalendarTableViewCellContent(month: "December",
+                                                   dayOfTheWeek: "December", numberOfRequests: "3", requestsText: "18 отзывов")]
+        
         ////////Set Gradient Background////////
         func createGradientLayer() {
             gradientLayer = CAGradientLayer()
@@ -81,53 +81,62 @@ class CalendarViewController: UIViewController, UITableViewDelegate, ExpandableC
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections.count
+        return datasource.count
     }
     
-    
-    func calendarTableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].requestsText.count
-    }
-    
-    func calendarTableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 44
-    }
-    
-    func calendarTableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (sections[indexPath.section].expanded) {
-            return 44
-        } else {
-            return 0
-        }
-    }
-    
-    func calendarTableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 2
-    }
-    
-    func calendarTableView(_ calendarTableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = CalendarTableViewCell()
-        header.customInit(title: sections[section].month, section: section, delegate: self)
-        header.customInit(title: sections[section].dayOfTheWeek, section: section, delegate: self)
-        header.customInit(title: sections[section].numberOfRequests, section: section, delegate: self)
-        return header
-    }
-    
+    //    func tableView(_ requestTableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    //        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")! as! ExpandingTableViewCell
+    //        print(datasource[0].expanded)
+    //        if (indexPath.item == 1) {
+    //
+    //        }
+    //        return cell
+    //    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell")!
-        cell.textLabel?.text = sections[indexPath.section].requestsText[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell")! as! CalendarTableViewCell
+        cell.selectionStyle = .none
+        print(datasource[0].expanded)
         return cell
     }
     
-    func tuggleSection(header: CalendarTableViewCell, section: Int) {
-        sections[section].expanded = !sections[section].expanded
-        
-        calendarTableView.beginUpdates()
-        for i in 0 ..< sections[section].requestsText.count {
-            calendarTableView.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
+    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    ////        if (datasource[0].expanded == false) {
+    ////        print(datasource[0].expanded)
+    //       return 210
+    //        }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if prevSelectedPath != nil && prevSelectedPath != indexPath{
+            let prevContent = datasource[prevSelectedPath!.row]
+            if prevContent.expanded{
+                prevContent.expanded = !prevContent.expanded
+            }
         }
-        calendarTableView.endUpdates()
+        
+        let content = datasource[indexPath.row]
+        content.expanded = !content.expanded
+        
+        calendarTableView.reloadRows(at: [indexPath], with: .automatic)
+        if (content.expanded == true) {
+            expanded = 1
+            expandedIndex = indexPath.row
+        } else {
+            expanded = 0
+        }
+        prevSelectedPath = indexPath
+        tableView.reloadData()
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if (expanded == 1) && (expandedIndex == indexPath.row) {
+            return 310
+        }
+        return 210
     }
     
     
 }
+

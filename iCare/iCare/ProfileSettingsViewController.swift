@@ -19,6 +19,7 @@ class ProfileSettingsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        
         if revealViewController() != nil {
 
             menuButton.target = revealViewController()
@@ -50,6 +51,8 @@ class ProfileSettingsViewController: UIViewController {
         super.viewWillAppear(animated)
         
         createGradientLayer()
+        
+        
 
     }
     
@@ -57,6 +60,7 @@ class ProfileSettingsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 
 
     
