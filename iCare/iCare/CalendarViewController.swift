@@ -12,6 +12,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, ExpandableC
     
     @IBOutlet weak var calendarTableView: UITableView!
     
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     
     var gradientLayer: CAGradientLayer!
     
@@ -36,7 +37,18 @@ class CalendarViewController: UIViewController, UITableViewDelegate, ExpandableC
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        if revealViewController() != nil {
+            
+            menuButton.target = revealViewController()
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            
+            revealViewController().rightViewRevealWidth = 150
+            
+            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
         
+        print(self.revealViewController().frontViewController)
+        print(self.revealViewController().rearViewController)
         ////////Set Gradient Background////////
         func createGradientLayer() {
             gradientLayer = CAGradientLayer()

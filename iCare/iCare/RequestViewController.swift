@@ -11,6 +11,7 @@ import UIKit
 class RequestViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var requestTableView: UITableView!
     var gradientLayer: CAGradientLayer!
     var datasource = [ExpandingTableViewCellContent]()
@@ -21,6 +22,19 @@ class RequestViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var requestView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if revealViewController() != nil {
+            
+            menuButton.target = revealViewController()
+            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            
+            revealViewController().rightViewRevealWidth = 150
+            
+            view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+        
+        print(self.revealViewController().frontViewController)
+        print(self.revealViewController().rearViewController)
         
        requestTableView.layer.cornerRadius = 3
        requestTableView.backgroundColor = UIColor.white

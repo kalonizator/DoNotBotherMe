@@ -19,7 +19,7 @@
 		31C9D3D31EFB2055002E02E1 /* ExpandingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C9D3D21EFB2055002E02E1 /* ExpandingTableViewCell.swift */; };
 		31C9D3D71EFD19B8002E02E1 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C9D3D61EFD19B8002E02E1 /* CalendarTableViewCell.swift */; };
 		31C9D3D91EFD8C06002E02E1 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C9D3D81EFD8C06002E02E1 /* Section.swift */; };
-		B513DCC51F01343F00A2D2E8 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B513DCC41F01343F00A2D2E8 /* MenuViewController.m */; };
+		B513DCC51F01343F00A2D2E8 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B513DCC41F01343F00A2D2E8 /* MenuController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +39,8 @@
 		31C9D3D21EFB2055002E02E1 /* ExpandingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandingTableViewCell.swift; sourceTree = "<group>"; };
 		31C9D3D61EFD19B8002E02E1 /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
 		31C9D3D81EFD8C06002E02E1 /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
-		B513DCC31F01343F00A2D2E8 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		B513DCC41F01343F00A2D2E8 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		B513DCC31F01343F00A2D2E8 /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
+		B513DCC41F01343F00A2D2E8 /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,8 +96,8 @@
 				31C9D3CC1EFAF8E5002E02E1 /* RequestViewController.swift */,
 				31C9D3D21EFB2055002E02E1 /* ExpandingTableViewCell.swift */,
 				3123C9BE1EFFA76300A7ED24 /* LaunchScreen.storyboard */,
-				B513DCC31F01343F00A2D2E8 /* MenuViewController.h */,
-				B513DCC41F01343F00A2D2E8 /* MenuViewController.m */,
+				B513DCC31F01343F00A2D2E8 /* MenuController.h */,
+				B513DCC41F01343F00A2D2E8 /* MenuController.m */,
 			);
 			path = iCare;
 			sourceTree = "<group>";
@@ -184,7 +184,7 @@
 				3123C9B61EFF9E0500A7ED24 /* SWRevealViewController.m in Sources */,
 				31C9D3D91EFD8C06002E02E1 /* Section.swift in Sources */,
 				31C9D3D31EFB2055002E02E1 /* ExpandingTableViewCell.swift in Sources */,
-				B513DCC51F01343F00A2D2E8 /* MenuViewController.m in Sources */,
+				B513DCC51F01343F00A2D2E8 /* MenuController.m in Sources */,
 				31C9D3B81EFAD2A7002E02E1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

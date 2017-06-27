@@ -6,13 +6,13 @@
 //  Copyright © 2017 kalonizator. All rights reserved.
 //
 
-#import "MenuViewController.h"
+#import "MenuController.h"
 
-@interface MenuViewController ()
+@interface MenuController ()
 
 @end
 
-@implementation MenuViewController
+@implementation MenuController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
